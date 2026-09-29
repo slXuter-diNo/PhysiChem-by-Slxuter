@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ASTRA-X | Space Research Terminal</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- BOOT SCREEN -->
+    <div id="bootScreen">
+        <div class="bootBox">
+
+            <div class="bootLogo">
+                ASTRA<span>-X</span>
+            </div>
+
+            <div class="bootSubtitle">
+                ADVANCED SPACE RESEARCH TERMINAL
+            </div>
+
+            <div class="bootProgress">
+                <div id="progressBar"></div>
+            </div>
+
+            <div id="bootStatus">
+                INITIALIZING SYSTEM...
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- TOP BAR -->
+    <header class="topBar">
+
+        <div class="brand">
+
+            <div class="brandIcon">
+                AX
+            </div>
+
+            <div>
+                <h1>ASTRA-X</h1>
+                <small>SPACE RESEARCH TERMINAL</small>
+            </div>
+
+        </div>
+
+
+        <div class="systemStatus">
+            <span class="statusDot"></span>
+            SYSTEM ONLINE
+        </div>
+
+
+        <div id="clock">
+            --:--:--
+        </div>
+
+    </header>
+
+
+    <!-- MAIN INTERFACE -->
+    <main class="mainLayout">
+
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="sidebar panel">
+
+            <div class="sectionTitle">
+                MISSION SYSTEMS
+            </div>
+
+
+            <button class="navButton active" data-view="command">
+                ◈ COMMAND CENTER
+            </button>
+
+            <button class="navButton" data-view="solar">
+                ☉ SOLAR SYSTEM
+            </button>
+
+            <button class="navButton" data-view="asteroids">
+                ☄ ASTEROID HUNTER
+            </button>
+
+            <button class="navButton" data-view="physics">
+                ⚛ PHYSICS LAB
+            </button>
+
+            <button class="navButton" data-view="earth">
+                ◎ EARTH OBSERVATORY
+            </button>
+
+
+            <div class="sidebarFooter">
+                <div>ASTRA CORE v1.0</div>
+                <div>LOCAL RESEARCH NODE</div>
+            </div>
+
+        </aside>
+
+
+
+        <!-- CENTER WORKSPACE -->
+        <section class="workspace">
+
+
+            <!-- TITLE PANEL -->
+            <div class="hero panel">
+
+                <div>
+
+                    <div class="eyebrow">
+                        DEEP SPACE // RESEARCH NODE 01
+                    </div>
+
+                    <h2 id="viewTitle">
+                        COMMAND CENTER
+                    </h2>
+
+                    <p id="viewDescription">
+                        Interactive scientific visualization and mission analysis.
+                    </p>
+
+                </div>
+
+
+                <div class="coordinates">
+
+                    <span>
+                        LAT 28.6139° N
+                    </span>
+
+                    <span>
+                        LON 77.2090° E
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- DASHBOARD -->
+            <div class="dashboard">
+
+
+                <!-- 3D VIEWPORT -->
+                <div class="viewport panel">
+
+                    <div class="viewportHeader">
+
+                        <span id="sceneTitle">
+                            SOLAR SYSTEM SIMULATION
+                        </span>
+
+                        <span class="liveStatus">
+                            ● LIVE SIMULATION
+                        </span>
+
+                    </div>
+
+
+                    <div id="spaceCanvas"></div>
+
+
+                    <div class="viewportControls">
+                        DRAG TO ROTATE • SCROLL TO ZOOM • CLICK OBJECTS
+                    </div>
+
+                </div>
+
+
+
+                <!-- RIGHT PANEL -->
+                <div class="rightColumn">
+
+
+                    <!-- TELEMETRY -->
+                    <div class="panel telemetry">
+
+                        <div class="panelTitle">
+                            TELEMETRY
+                        </div>
+
+
+                        <div class="metric">
+
+                            <span>
+                                OBJECTS TRACKED
+                            </span>
+
+                            <b id="objectsTracked">
+                                08
+                            </b>
+
+                        </div>
+
+
+                        <div class="metric">
+
+                            <span>
+                                MISSION STATUS
+                            </span>
+
+                            <b>
+                                NOMINAL
+                            </b>
+
+                        </div>
+
+
+                        <div class="metric">
+
+                            <span>
+                                SIMULATION TIME
+                            </span>
+
+                            <b id="simulationTime">
+                                00:00:00
+                            </b>
+
+                        </div>
+
+
+                        <div class="metric">
+
+                            <span>
+                                SCAN RANGE
+                            </span>
+
+                            <b>
+                                1.2 AU
+                            </b>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- OBJECT ANALYSIS -->
+                    <div class="panel objectPanel">
+
+                        <div class="panelTitle">
+                            OBJECT ANALYSIS
+                        </div>
+
+
+                        <div id="objectName">
+                            SELECT AN OBJECT
+                        </div>
+
+
+                        <div id="objectData">
+                            Click a celestial body in the viewport.
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- SYSTEM FEED -->
+                    <div class="panel feedPanel">
+
+                        <div class="panelTitle">
+                            SYSTEM FEED
+                        </div>
+
+
+                        <div id="systemFeed">
+
+                            <p>
+                                <span>[20:14:02]</span>
+                                Orbital simulation loaded.
+                            </p>
+
+                            <p>
+                                <span>[20:14:04]</span>
+                                Sensor array synchronized.
+                            </p>
+
+                            <p>
+                                <span>[20:14:07]</span>
+                                Awaiting operator input.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- THREE.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+    <!-- ASTRA-X SCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+</html>

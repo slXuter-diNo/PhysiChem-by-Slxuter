@@ -1,0 +1,741 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #020609;
+    --panel: rgba(5, 13, 19, 0.92);
+    --cyan: #48d9ff;
+    --cyan-light: #b7f3ff;
+    --text: #e5faff;
+    --muted: #6b919d;
+    --line: rgba(72, 217, 255, 0.22);
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 65% 45%,
+            rgba(0, 160, 255, 0.09),
+            transparent 35%
+        ),
+        #020609;
+
+    color: var(--text);
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+}
+
+
+/* =========================================
+   BACKGROUND GRID
+========================================= */
+
+body::before {
+    content: "";
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            rgba(72, 217, 255, 0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(72, 217, 255, 0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+}
+
+
+/* =========================================
+   BOOT SCREEN
+========================================= */
+
+#bootScreen {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 999;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background: #010407;
+
+    transition:
+        opacity 0.8s ease;
+}
+
+.bootBox {
+    width: min(520px, 85vw);
+
+    text-align: center;
+}
+
+.bootLogo {
+    font-size: 60px;
+
+    font-weight: 800;
+
+    letter-spacing: 8px;
+}
+
+.bootLogo span {
+    color: var(--cyan);
+}
+
+.bootSubtitle {
+    margin-top: 8px;
+    margin-bottom: 32px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+}
+
+.bootProgress {
+    width: 100%;
+    height: 3px;
+
+    overflow: hidden;
+
+    background: #10202a;
+}
+
+#progressBar {
+    width: 0%;
+    height: 100%;
+
+    background: var(--cyan);
+
+    box-shadow:
+        0 0 15px var(--cyan);
+
+    transition:
+        width 0.25s ease;
+}
+
+#bootStatus {
+    margin-top: 12px;
+
+    color: var(--cyan);
+
+    font-family: monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   TOP BAR
+========================================= */
+
+.topBar {
+    height: 76px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+
+    padding: 0 24px;
+
+    border-bottom:
+        1px solid var(--line);
+
+    background:
+        rgba(2, 7, 11, 0.95);
+}
+
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 290px;
+}
+
+.brandIcon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border:
+        1px solid var(--cyan);
+
+    color: var(--cyan);
+
+    font-weight: 800;
+
+    box-shadow:
+        inset 0 0 18px
+        rgba(72, 217, 255, 0.08);
+}
+
+.brand h1 {
+    font-size: 21px;
+
+    letter-spacing: 3px;
+}
+
+.brand small {
+    color: var(--muted);
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+}
+
+.systemStatus {
+    margin-left: auto;
+
+    color: var(--cyan-light);
+
+    font-family: monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+.statusDot {
+    display: inline-block;
+
+    width: 7px;
+    height: 7px;
+
+    margin-right: 7px;
+
+    border-radius: 50%;
+
+    background: #58ffab;
+
+    box-shadow:
+        0 0 10px #58ffab;
+}
+
+#clock {
+    width: 75px;
+
+    color: var(--muted);
+
+    font-family: monospace;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   GENERAL PANELS
+========================================= */
+
+.panel {
+    border:
+        1px solid var(--line);
+
+    background:
+        var(--panel);
+
+    box-shadow:
+        inset 0 0 35px
+        rgba(72, 217, 255, 0.025);
+}
+
+
+/* =========================================
+   MAIN LAYOUT
+========================================= */
+
+.mainLayout {
+    height:
+        calc(100vh - 76px);
+
+    display: grid;
+
+    grid-template-columns:
+        230px 1fr;
+
+    gap: 14px;
+
+    padding: 14px;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+    position: relative;
+
+    padding: 18px 12px;
+}
+
+.sectionTitle {
+    margin:
+        5px 8px 16px;
+
+    color: var(--muted);
+
+    font-family: monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.navButton {
+    width: 100%;
+
+    margin-bottom: 7px;
+
+    padding: 13px 10px;
+
+    border:
+        1px solid transparent;
+
+    background: transparent;
+
+    color: #89a6af;
+
+    text-align: left;
+
+    font-family: monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 0.7px;
+
+    cursor: pointer;
+
+    transition:
+        0.2s ease;
+}
+
+.navButton:hover,
+.navButton.active {
+    border-color:
+        var(--line);
+
+    background:
+        rgba(72, 217, 255, 0.07);
+
+    color:
+        var(--cyan-light);
+
+    box-shadow:
+        inset 3px 0 0 var(--cyan);
+}
+
+.sidebarFooter {
+    position: absolute;
+
+    left: 20px;
+    bottom: 18px;
+
+    color: #385963;
+
+    font-family: monospace;
+
+    font-size: 8px;
+
+    line-height: 2;
+}
+
+
+/* =========================================
+   WORKSPACE
+========================================= */
+
+.workspace {
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    min-height: 100px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding:
+        20px 22px;
+}
+
+.eyebrow {
+    color: var(--muted);
+
+    font-family: monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.hero h2 {
+    margin-top: 8px;
+
+    font-size:
+        clamp(22px, 3vw, 36px);
+
+    letter-spacing: 4px;
+}
+
+.hero p {
+    margin-top: 6px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.coordinates {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    color: #507580;
+
+    font-family: monospace;
+
+    font-size: 9px;
+
+    text-align: right;
+}
+
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+.dashboard {
+    min-height: 0;
+
+    flex: 1;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr) 300px;
+
+    gap: 14px;
+}
+
+
+/* =========================================
+   3D VIEWPORT
+========================================= */
+
+.viewport {
+    position: relative;
+
+    min-width: 0;
+
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+.viewportHeader {
+    height: 42px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 0 14px;
+
+    border-bottom:
+        1px solid var(--line);
+
+    color:
+        var(--cyan-light);
+
+    font-family: monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+.liveStatus {
+    color: #59ffac;
+
+    font-size: 8px;
+}
+
+#spaceCanvas {
+    position: absolute;
+
+    top: 42px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#spaceCanvas canvas {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+}
+
+.viewportControls {
+    position: absolute;
+
+    left: 14px;
+    bottom: 12px;
+
+    color: #52717b;
+
+    font-family: monospace;
+
+    font-size: 8px;
+}
+
+
+/* =========================================
+   RIGHT COLUMN
+========================================= */
+
+.rightColumn {
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-rows:
+        auto auto 1fr;
+
+    gap: 14px;
+}
+
+
+/* =========================================
+   TELEMETRY
+========================================= */
+
+.telemetry,
+.objectPanel,
+.feedPanel {
+    padding: 15px;
+}
+
+.panelTitle {
+    padding-bottom: 12px;
+
+    margin-bottom: 12px;
+
+    border-bottom:
+        1px solid
+        rgba(72, 217, 255, 0.12);
+
+    color: var(--muted);
+
+    font-family: monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.metric {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 9px 0;
+
+    border-bottom:
+        1px solid
+        rgba(72, 217, 255, 0.06);
+
+    font-family: monospace;
+
+    font-size: 9px;
+}
+
+.metric span {
+    color: #587b86;
+}
+
+.metric b {
+    color: var(--cyan-light);
+
+    font-weight: 500;
+}
+
+
+/* =========================================
+   OBJECT ANALYSIS
+========================================= */
+
+#objectName {
+    color:
+        var(--cyan-light);
+
+    font-family: monospace;
+
+    font-size: 16px;
+
+    letter-spacing: 1px;
+}
+
+#objectData {
+    margin-top: 9px;
+
+    color: #6f919b;
+
+    font-family: monospace;
+
+    font-size: 10px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   SYSTEM FEED
+========================================= */
+
+#systemFeed {
+    color: #6e909b;
+
+    font-family: monospace;
+
+    font-size: 9px;
+
+    line-height: 1.9;
+}
+
+#systemFeed p {
+    margin-bottom: 5px;
+}
+
+#systemFeed span {
+    color: #3d6874;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    body {
+        overflow: auto;
+    }
+
+    .topBar {
+        height: auto;
+
+        min-height: 70px;
+
+        flex-wrap: wrap;
+
+        padding: 12px;
+    }
+
+    .brand {
+        min-width: 0;
+    }
+
+    .systemStatus {
+        margin-left: 0;
+    }
+
+    .mainLayout {
+        height: auto;
+
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: flex;
+
+        gap: 6px;
+
+        overflow-x: auto;
+    }
+
+    .sectionTitle,
+    .sidebarFooter {
+        display: none;
+    }
+
+    .navButton {
+        min-width: 160px;
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .viewport {
+        height: 520px;
+    }
+
+    .rightColumn {
+        grid-template-rows: auto;
+    }
+
+    .hero {
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .coordinates {
+        display: none;
+    }
+}
