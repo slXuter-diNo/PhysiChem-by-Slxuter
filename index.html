@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PhysiChem — Physics & Chemistry Explorer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            Physi<span>Chem</span>
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#physics">Physics</a>
+            <a href="#chemistry">Chemistry</a>
+            <a href="#about">About</a>
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                ⚛️ Interactive Science Lab
+            </div>
+
+            <h1>
+                Explore Physics & Chemistry
+                <span>in 3D</span>
+            </h1>
+
+            <p>
+                Learn science through interactive simulations,
+                experiments, visualizations and 3D models.
+            </p>
+
+            <a href="#physics" class="btn">
+                Start Exploring 🚀
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PHYSICS ================= -->
+
+    <section id="physics" class="section">
+
+        <h2>⚡ Physics</h2>
+
+        <p>
+            Explore physics concepts with interactive simulations,
+            graphs and 3D experiments.
+        </p>
+
+
+        <div class="level-tabs">
+
+            <button class="level-btn active" data-subject="physics" data-level="foundation">
+                Foundation
+                <small>Class 9–10</small>
+            </button>
+
+            <button class="level-btn" data-subject="physics" data-level="advanced">
+                Advanced
+                <small>Class 11–12</small>
+            </button>
+
+            <button class="level-btn" data-subject="physics" data-level="pro">
+                Pro
+                <small>JEE / NEET+</small>
+            </button>
+
+        </div>
+
+
+        <div id="physicsTopicGrid" class="topic-grid"></div>
+
+    </section>
+
+
+    <!-- ================= CHEMISTRY ================= -->
+
+    <section id="chemistry" class="section">
+
+        <h2>🧪 Chemistry</h2>
+
+        <p>
+            Discover atoms, molecules, reactions, periodic trends
+            and chemical simulations.
+        </p>
+
+
+        <div class="level-tabs">
+
+            <button class="level-btn active" data-subject="chemistry" data-level="foundation">
+                Foundation
+                <small>Class 9–10</small>
+            </button>
+
+            <button class="level-btn" data-subject="chemistry" data-level="advanced">
+                Advanced
+                <small>Class 11–12</small>
+            </button>
+
+            <button class="level-btn" data-subject="chemistry" data-level="pro">
+                Pro
+                <small>JEE / NEET+</small>
+            </button>
+
+        </div>
+
+
+        <div id="chemistryTopicGrid" class="topic-grid"></div>
+
+    </section>
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section id="about" class="section about-section">
+
+        <h2>🔬 About PhysiChem</h2>
+
+        <p>
+            PhysiChem is an interactive Physics and Chemistry
+            learning platform designed to make difficult concepts
+            easier to understand through visual experiments.
+        </p>
+
+
+        <div class="about-cards">
+
+            <div class="about-card">
+                <div class="about-icon">⚡</div>
+                <h3>Physics</h3>
+                <p>
+                    Motion, forces, electricity, waves,
+                    optics, modern physics and more.
+                </p>
+            </div>
+
+
+            <div class="about-card">
+                <div class="about-icon">🧪</div>
+                <h3>Chemistry</h3>
+                <p>
+                    Atoms, molecules, reactions,
+                    equilibrium, organic chemistry and more.
+                </p>
+            </div>
+
+
+            <div class="about-card">
+                <div class="about-icon">🌐</div>
+                <h3>Interactive</h3>
+                <p>
+                    Change values, experiment with simulations
+                    and see science happen visually.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!--                  UNIVERSAL LAB MODAL              -->
+    <!-- ================================================= -->
+
+    <div id="labModal" class="modal-overlay">
+
+        <div class="modal-box lab-modal-box">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2 id="labTitle">Interactive Lab</h2>
+                    <p id="labSubtitle">
+                        Explore the concept interactively.
+                    </p>
+                </div>
+
+                <button
+                    class="close-btn"
+                    id="closeLabBtn"
+                    aria-label="Close">
+                    ×
+                </button>
+
+            </div>
+
+
+            <div id="labContent" class="lab-content"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!--                CHEMIST STUDIES MODAL              -->
+    <!-- ================================================= -->
+
+    <div id="chemistModal" class="modal-overlay">
+
+        <div class="modal-box chemist-modal-box">
+
+            <div class="modal-header">
+
+                <div>
+                    <h2>🧪 Chemist Studies</h2>
+                    <p>
+                        Explore the periodic table and build formulas.
+                    </p>
+                </div>
+
+                <button
+                    class="close-btn"
+                    id="closeChemistBtn"
+                    aria-label="Close">
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- Periodic Table -->
+
+            <h3 class="modal-section-title">
+                Periodic Table
+            </h3>
+
+            <p class="modal-instructions">
+                Click two elements to select them.
+            </p>
+
+            <div
+                id="periodicTable"
+                class="periodic-table">
+            </div>
+
+
+            <!-- Formula Generator -->
+
+            <div class="formula-panel">
+
+                <h3>⚗️ Criss-Cross Formula Generator</h3>
+
+                <p>
+                    Select two elements from the periodic table.
+                </p>
+
+                <button
+                    id="generateFormulaBtn"
+                    class="btn small-btn">
+                    Generate Formula
+                </button>
+
+                <div
+                    id="formulaResult"
+                    class="formula-result">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!--                    TOAST                           -->
+    <!-- ================================================= -->
+
+    <div id="toast" class="toast">
+        Interactive lab opened!
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 PhysiChem • Physics + Chemistry •
+            Learn. Experiment. Discover.
+        </p>
+
+    </footer>
+
+
+    <!-- ================= SCRIPTS ================= -->
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Element database -->
+    <script src="elements.js"></script>
+
+    <!-- Main PhysiChem JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
